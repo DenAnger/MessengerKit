@@ -14,8 +14,9 @@ class CustomCollectionView: MSGImessageCollectionView {
     override func registerCells() {
         super.registerCells()
         
-        register(UINib(nibName: "CustomOutgoingTextCell", bundle: nil), forCellWithReuseIdentifier: "outgoingText")
-        register(UINib(nibName: "CustomIncomingTextCell", bundle: nil), forCellWithReuseIdentifier: "incomingText")
+        register(UINib(nibName: "CustomOutgoingTextCell", bundle: nil),
+                 forCellWithReuseIdentifier: "outgoingText")
+        register(UINib(nibName: "CustomIncomingTextCell", bundle: nil),
+                 forCellWithReuseIdentifier: "incomingText")
     }
-
 }

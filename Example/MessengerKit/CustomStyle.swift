@@ -9,13 +9,13 @@
 import MessengerKit
 
 struct CustomStyle: MSGMessengerStyle {
-
+    
     var outgoingLinkUnderlineStyle: NSNumber = 0
-
+    
     var incomingLinkUnderlineStyle: NSNumber = 0
-
+    
     var inputTextViewBackgroundColor: UIColor = UIColor.white
-
+    
     var collectionView: MSGCollectionView.Type = CustomCollectionView.self
     
     var inputView: MSGInputView.Type = MSGImessageInputView.self
@@ -24,9 +24,15 @@ struct CustomStyle: MSGMessengerStyle {
     
     var footerHeight: CGFloat = 0
     
-    var backgroundColor: UIColor = UIColor(hue:0.64, saturation:0.24, brightness:0.21, alpha:1.00)
+    var backgroundColor: UIColor = UIColor(hue:0.64,
+                                           saturation:0.24,
+                                           brightness:0.21,
+                                           alpha:1.00)
     
-    var inputViewBackgroundColor: UIColor = UIColor(hue:0.63, saturation:0.14, brightness:0.29, alpha:1.00)
+    var inputViewBackgroundColor: UIColor = UIColor(hue:0.63,
+                                                    saturation:0.14,
+                                                    brightness:0.29,
+                                                    alpha:1.00)
     
     var font: UIFont = .preferredFont(forTextStyle: .body)
     
@@ -46,7 +52,8 @@ struct CustomStyle: MSGMessengerStyle {
     
     var incomingLinkColor: UIColor = .white
     
-    func size(for message: MSGMessage, in collectionView: UICollectionView) -> CGSize {
+    func size(for message: MSGMessage,
+              in collectionView: UICollectionView) -> CGSize {
         var size: CGSize!
         
         switch message.body {
@@ -55,11 +62,12 @@ struct CustomStyle: MSGMessengerStyle {
             let bubble = CustomBubble()
             bubble.text = body
             bubble.font = font
-            let bubbleSize = bubble.calculatedSize(in: CGSize(width: collectionView.bounds.width, height: .infinity))
-            size = CGSize(width: collectionView.bounds.width, height: bubbleSize.height)
-            
+            let bubbleSize = bubble.calculatedSize(
+                in: CGSize(width: collectionView.bounds.width, height: .infinity)
+            )
+            size = CGSize(width: collectionView.bounds.width,
+                          height: bubbleSize.height)
             break
-            
             
         case .emoji:
             
@@ -73,7 +81,6 @@ struct CustomStyle: MSGMessengerStyle {
             
             break
         }
-        
         return size
     }
     
@@ -81,6 +88,8 @@ struct CustomStyle: MSGMessengerStyle {
     
     var incomingBorderColor: UIColor = .white
     
-    var outgoingBorderColor: UIColor = UIColor(hue:0.91, saturation:0.70, brightness:0.85, alpha:1.00)
-    
+    var outgoingBorderColor: UIColor = UIColor(hue:0.91,
+                                               saturation:0.70,
+                                               brightness:0.85,
+                                               alpha:1.00)
 }

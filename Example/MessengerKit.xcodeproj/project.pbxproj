@@ -11,7 +11,7 @@
 		2826278620D278880069D966 /* CustomStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826278520D278880069D966 /* CustomStyleViewController.swift */; };
 		2826278820D279890069D966 /* CustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826278720D279890069D966 /* CustomStyle.swift */; };
 		2826278A20D279C60069D966 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826278920D279C60069D966 /* CustomCollectionView.swift */; };
-		2826278D20D27C440069D966 /* CustomOutgoingTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826278B20D27C440069D966 /* CustomOutgoingTextCell.swift */; };
+		2826278D20D27C440069D966 /* CustomTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826278B20D27C440069D966 /* CustomTextCell.swift */; };
 		2826278E20D27C440069D966 /* CustomOutgoingTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2826278C20D27C440069D966 /* CustomOutgoingTextCell.xib */; };
 		2826279020D27C910069D966 /* CustomBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826278F20D27C910069D966 /* CustomBubble.swift */; };
 		2826279220D280030069D966 /* CustomIncomingTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2826279120D280030069D966 /* CustomIncomingTextCell.xib */; };
@@ -29,11 +29,11 @@
 
 /* Begin PBXFileReference section */
 		1A4303F96349B583DECE3ACE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		1EEE87FA9C8E9498CA61FD8E /* MessengerKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MessengerKit.podspec; path = ../MessengerKit.podspec; sourceTree = "<group>"; };
+		1EEE87FA9C8E9498CA61FD8E /* MessengerKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MessengerKit.podspec; path = ../MessengerKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2826278520D278880069D966 /* CustomStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyleViewController.swift; sourceTree = "<group>"; };
 		2826278720D279890069D966 /* CustomStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyle.swift; sourceTree = "<group>"; };
 		2826278920D279C60069D966 /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
-		2826278B20D27C440069D966 /* CustomOutgoingTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOutgoingTextCell.swift; sourceTree = "<group>"; };
+		2826278B20D27C440069D966 /* CustomTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextCell.swift; sourceTree = "<group>"; };
 		2826278C20D27C440069D966 /* CustomOutgoingTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomOutgoingTextCell.xib; sourceTree = "<group>"; };
 		2826278F20D27C910069D966 /* CustomBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBubble.swift; sourceTree = "<group>"; };
 		2826279120D280030069D966 /* CustomIncomingTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomIncomingTextCell.xib; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 				2826278520D278880069D966 /* CustomStyleViewController.swift */,
 				2826278720D279890069D966 /* CustomStyle.swift */,
 				2826278920D279C60069D966 /* CustomCollectionView.swift */,
-				2826278B20D27C440069D966 /* CustomOutgoingTextCell.swift */,
+				2826278B20D27C440069D966 /* CustomTextCell.swift */,
 				2826278C20D27C440069D966 /* CustomOutgoingTextCell.xib */,
 				2826279120D280030069D966 /* CustomIncomingTextCell.xib */,
 				2826278F20D27C910069D966 /* CustomBubble.swift */,
@@ -206,18 +206,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1160;
 					};
 				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "MessengerKit" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -294,7 +294,7 @@
 			files = (
 				2826279020D27C910069D966 /* CustomBubble.swift in Sources */,
 				28C3375820D1550D00ED6803 /* ViewController.swift in Sources */,
-				2826278D20D27C440069D966 /* CustomOutgoingTextCell.swift in Sources */,
+				2826278D20D27C440069D966 /* CustomTextCell.swift in Sources */,
 				28C3375620D1550D00ED6803 /* TravamigosViewController.swift in Sources */,
 				28C3375C20D1553000ED6803 /* User.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -325,6 +325,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -333,12 +334,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -378,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -386,12 +390,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -432,7 +438,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -448,7 +454,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

@@ -72,7 +72,8 @@ extension String {
         
         for scalar in emojiScalars {
             
-            if let prev = previousScalar, !prev.isZeroWidthJoiner && !scalar.isZeroWidthJoiner {
+            if let prev = previousScalar,
+                !prev.isZeroWidthJoiner && !scalar.isZeroWidthJoiner {
                 
                 scalars.append(currentScalarSet)
                 currentScalarSet = []
@@ -93,7 +94,9 @@ extension String {
         var previous: UnicodeScalar?
         for cur in unicodeScalars {
             
-            if let previous = previous, previous.isZeroWidthJoiner && cur.isEmoji {
+            if let previous = previous,
+                previous.isZeroWidthJoiner && cur.isEmoji {
+                
                 chars.append(previous)
                 chars.append(cur)
                 

@@ -17,5 +17,4 @@ struct User: MSGUser {
     var avatarUrl: URL?
     
     var isSender: Bool
-    
 }

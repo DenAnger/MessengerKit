@@ -40,16 +40,23 @@ class CustomBubble: UITextView {
         
         isEditable = false
         isSelectable = true // TODO: Check that links are tappable
-        dataDetectorTypes = [.flightNumber, .calendarEvent, .address, .phoneNumber, .link, .lookupSuggestion]
+        dataDetectorTypes = [.flightNumber,
+                             .calendarEvent,
+                             .address,
+                             .phoneNumber,
+                             .link,
+                             .lookupSuggestion]
         isUserInteractionEnabled = true
         delaysContentTouches = true
         font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         translatesAutoresizingMaskIntoConstraints = false
-        textContainerInset = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
+        textContainerInset = UIEdgeInsets(top: 15,
+                                          left: 20,
+                                          bottom: 15,
+                                          right: 20)
         textContainer.lineFragmentPadding = 0
         
         linkTextAttributes = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single]
-        
     }
     
     
@@ -64,14 +71,18 @@ class CustomBubble: UITextView {
             return false
         }
         
-        guard let range = tokenizer.rangeEnclosingPosition(pos, with: .character,
-                                                           inDirection: UITextDirection(rawValue: UITextLayoutDirection.left.rawValue)) else {
-                                                            return false
+        guard let range = tokenizer.rangeEnclosingPosition(
+            pos,
+            with: .character,
+            inDirection: UITextDirection(rawValue: UITextLayoutDirection.left.rawValue)
+            ) else {
+                return false
         }
         
         let startIndex = offset(from: beginningOfDocument, to: range.start)
         
-        return attributedText.attribute(.link, at: startIndex, effectiveRange: nil) != nil
+        return attributedText.attribute(.link,
+                                        at: startIndex,
+                                        effectiveRange: nil) != nil
     }
-
 }
