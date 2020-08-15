@@ -19,7 +19,8 @@ extension UnicodeScalar {
         8400...8447: // Combining Diacritical Marks for Symbols
             return true
             
-        default: return false
+        default:
+            return false
         }
     }
     
@@ -52,8 +53,7 @@ extension String {
         
         return !isEmpty
             && !unicodeScalars.contains(where: {
-                !$0.isEmoji
-                    && !$0.isZeroWidthJoiner
+                !$0.isEmoji && !$0.isZeroWidthJoiner
             })
     }
     

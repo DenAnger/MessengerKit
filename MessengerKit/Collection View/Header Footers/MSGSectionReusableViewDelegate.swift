@@ -9,14 +9,9 @@
 import Foundation
 
 public protocol MSGSectionReusableViewDelegate: NSObjectProtocol {
-    
     func reusableViewAvatarTapped(for user: MSGUser)
-    
 }
 
-
 extension MSGSectionReusableViewDelegate {
-    
     public func reusableViewAvatarTapped(for user: MSGUser) { }
-    
 }

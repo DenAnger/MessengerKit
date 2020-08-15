@@ -16,8 +16,14 @@ class KeyboardFrameObserversManager : NSObject {
         super.init()
         
         let center = NotificationCenter.default
-        center.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        center.addObserver(self, selector: #selector(keyboardDidChangeFrame), name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
+        center.addObserver(self,
+                           selector: #selector(keyboardWillChangeFrame),
+                           name: UIResponder.keyboardWillChangeFrameNotification,
+                           object: nil)
+        center.addObserver(self,
+                           selector: #selector(keyboardDidChangeFrame),
+                           name: UIResponder.keyboardDidChangeFrameNotification,
+                           object: nil)
     }
     
     private let observers: NSHashTable<KeyboardFrameObserver> = NSHashTable.weakObjects()
@@ -36,8 +42,12 @@ class KeyboardFrameObserversManager : NSObject {
             self.isEnabled = true
             
             // immediately notify the new observer current keyboard frame.
-            if let keyboardView = self.keyboardView, let targetView = observer.view {
-                let frame = targetView.convert(keyboardView.bounds, from: keyboardView as UICoordinateSpace)
+            if let keyboardView = self.keyboardView,
+                let targetView = observer.view {
+                let frame = targetView.convert(
+                    keyboardView.bounds,
+                    from: keyboardView as UICoordinateSpace
+                )
                 observer.updateHandler(frame, false)
             }
         }
@@ -59,7 +69,10 @@ class KeyboardFrameObserversManager : NSObject {
             
             if isEnabled {
                 // KVO host view's frame sometimes can't get updated values. So instead, we use display link pulling.
-                displayLink = CADisplayLink(target: self, selector: #selector(handleDisplayLink))
+                displayLink = CADisplayLink(
+                    target: self,
+                    selector: #selector(handleDisplayLink)
+                )
                 displayLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
             } else {
                 displayLink = nil
@@ -81,7 +94,8 @@ class KeyboardFrameObserversManager : NSObject {
     /// - Parameters:
     ///   - forced: A boolean indicated whether update keyboard frame no matter frame changed or not. The default value is false.
     ///   - animated: A boolean indicated whether the update should be perform with animation. The default value is false.
-    private func updateKeyboardFrameForObservers(forced: Bool = false, animated: Bool = false) {
+    private func updateKeyboardFrameForObservers(forced: Bool = false,
+                                                 animated: Bool = false) {
         guard let keyboardView = keyboardView else { return }
         
         let newFrame = keyboardView.frame
@@ -92,8 +106,16 @@ class KeyboardFrameObserversManager : NSObject {
         
         for observer in observers.allObjects {
             if let view = observer.view {
-                let frame = view.convert(keyboardBounds, from: keyboardView as UICoordinateSpace) // iPad Slide Over Undock mode not align
-                //                let frame = view.convert(keyboardFrame, from: UIScreen.main.coordinateSpace) // iPad Slide Over Dock mode not align
+                
+                // iPad Slide Over Undock mode not align
+                let frame = view.convert(
+                    keyboardBounds,
+                    from: keyboardView as UICoordinateSpace
+                )
+                
+                // iPad Slide Over Dock mode not align
+//                 let frame = view.convert(keyboardFrame,
+//                                          from: UIScreen.main.coordinateSpace)
                 observer.updateHandler(frame, animated)
             }
         }
@@ -103,7 +125,7 @@ class KeyboardFrameObserversManager : NSObject {
     private var keyboardView: UIView? {
         if _keyboardView == nil {
             struct Classes {
-                //                static let keyboardWindow = NSClassFromString("UIRemoteKeyboardWindow") as? NSObject.Type // for input view
+                // static let keyboardWindow = NSClassFromString("UIRemoteKeyboardWindow") as? NSObject.Type // for input view
                 static let textEffectsWindow = NSClassFromString("UITextEffectsWindow") as? NSObject.Type // for input accessory view
                 static let inputSetContainerView = NSClassFromString("UIInputSetContainerView") as? NSObject.Type
                 static let inputSetHostView = NSClassFromString("UIInputSetHostView") as? NSObject.Type

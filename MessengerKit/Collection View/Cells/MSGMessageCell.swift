@@ -42,13 +42,18 @@ open class MSGMessageCell: UICollectionViewCell {
     }
     
     open func addGestureRecognizers() {
-        longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressReceieved(_:)))
+        longPressGestureRecognizer = UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(longPressReceieved(_:))
+        )
         contentView.addGestureRecognizer(longPressGestureRecognizer)
         
-        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapReceived(_:)))
+        tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(tapReceived(_:))
+        )
         contentView.addGestureRecognizer(tapGestureRecognizer)
     }
-    
 }
 
 // MARK: - MSGMessageCellDelegate Handlers
@@ -56,13 +61,14 @@ open class MSGMessageCell: UICollectionViewCell {
 extension MSGMessageCell {
     
     @objc open func longPressReceieved(_ sender: UILongPressGestureRecognizer) {
-        guard let message = message, sender.state == .began else { return }
+        guard let message = message,
+            sender.state == .began else { return }
         delegate?.cellLongPressReceived(for: message)
     }
     
     @objc open func tapReceived(_ sender: UITapGestureRecognizer) {
-        guard let message = message, sender.state == .ended else { return }
+        guard let message = message,
+            sender.state == .ended else { return }
         delegate?.cellTapReceived(for: message)
     }
-    
 }

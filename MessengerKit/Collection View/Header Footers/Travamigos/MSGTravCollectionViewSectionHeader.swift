@@ -10,12 +10,11 @@ import UIKit
 
 class MSGTravCollectionViewSectionHeader: MSGSectionReusableView {
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet var label: UILabel!
     
     override var title: String? {
         didSet {
             label.text = title
         }
     }
-    
 }

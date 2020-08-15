@@ -21,10 +21,10 @@ extension MSGMessengerViewController {
             self.collectionView.scrollToBottom(animated: true)
             self.collectionView.layoutTypingLabelIfNeeded()
         })
-        
     }
     
-    @objc open func insert(_ messages: [MSGMessage], callback: (() -> Void)? = nil) {
+    @objc open func insert(_ messages: [MSGMessage],
+                           callback: (() -> Void)? = nil) {
         
         collectionView.performBatchUpdates({
             
@@ -34,15 +34,12 @@ extension MSGMessengerViewController {
                 
                 let sectionIndex = numberOfSections(in: collectionView) - 1
                 self.collectionView.insertSections([sectionIndex])
-                
             }
             
         }, completion: { (_) in
             self.collectionView.scrollToBottom(animated: true)
             self.collectionView.layoutTypingLabelIfNeeded()
         })
-        
-        
     }
     
     @objc open func remove(_ message: MSGMessage) {
@@ -50,5 +47,4 @@ extension MSGMessengerViewController {
         // TODO: Needs implementing
         
     }
-    
 }

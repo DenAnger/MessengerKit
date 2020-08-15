@@ -98,7 +98,9 @@ open class MSGInputView: UIControl {
 
     private func setupSendButton() {
         sendButton.isEnabled = false
-        sendButton.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
+        sendButton.addTarget(self,
+                             action: #selector(sendButtonTapped(_:)),
+                             for: .touchUpInside)
     }
 
     @objc func sendButtonTapped(_ sender: UIButton) {
@@ -118,15 +120,16 @@ open class MSGInputView: UIControl {
 }
 
 extension MSGInputView: MSGPlaceholderTextViewDelegate {
-
+    
     open func textViewDidChange(_ textView: UITextView) {
         sendButton.isEnabled = textView.text != ""
-        let size = textView.sizeThatFits(CGSize(width: textView.bounds.size.width, height: .infinity))
+        let size = textView.sizeThatFits(
+            CGSize(width: textView.bounds.size.width, height: .infinity)
+        )
         let height = size.height + 11
 
         heightConstraint.constant = height < maxHeight ? height : maxHeight
 
         sendActions(for: .valueChanged)
     }
-
 }

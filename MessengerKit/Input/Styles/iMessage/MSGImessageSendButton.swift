@@ -52,5 +52,4 @@ class MSGImessageSendButton: UIButton {
         
         layer.addSublayer(overlay)
     }
-
 }

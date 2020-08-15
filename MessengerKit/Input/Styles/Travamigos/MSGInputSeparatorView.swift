@@ -43,10 +43,11 @@ class MSGInputSeparatorView: UIView {
     func setup() {
         bar.translatesAutoresizingMaskIntoConstraints = false
         addSubview(bar)
-        bar.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        bar.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+        bar.topAnchor.constraint(equalTo: topAnchor,
+                                 constant: 8).isActive = true
+        bar.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                    constant: -8).isActive = true
         bar.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         bar.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }
-    
 }

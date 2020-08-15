@@ -26,7 +26,8 @@ open class MSGCollectionView: UICollectionView {
     }
     
     required public init() {
-        super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        super.init(frame: .zero,
+                   collectionViewLayout: UICollectionViewFlowLayout())
         
         alwaysBounceVertical = true
         
@@ -38,7 +39,6 @@ open class MSGCollectionView: UICollectionView {
         super.init(coder: aDecoder)
         fatalError("MSGCollectionView should not be initialized manually! Did you mean to use MSGMessengerViewController?")
     }
-    
     
     /// Override this method to register custom cells.
     ///
@@ -71,7 +71,10 @@ open class MSGCollectionView: UICollectionView {
     /// - Parameter animated: Whether the scrolling should be animated or not
     public func scrollToBottom(animated: Bool) {
         guard contentSize.height > bounds.size.height else { return }
-        setContentOffset(CGPoint(x: 0, y: (contentSize.height - bounds.size.height) + (contentInset.bottom)), animated: animated)
+        setContentOffset(
+            CGPoint(x: 0, y: (contentSize.height - bounds.size.height) + (contentInset.bottom)),
+            animated: animated
+        )
     }
     
     /// Adds the typing label to the bottom of the collection view.
@@ -80,20 +83,25 @@ open class MSGCollectionView: UICollectionView {
         
         // TODO: add appearance proxy!!
         
-        let attributedText = NSMutableAttributedString(string: "2 people ", attributes: [
-            .font: UIFont.systemFont(ofSize: 14, weight: .bold),
-            .foregroundColor: UIColor.darkText
-        ])
-
-        attributedText.append(NSAttributedString(string: "typing…", attributes: [
-            .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-            .foregroundColor: UIColor.darkText
-        ]))
-
+        let attributedText = NSMutableAttributedString(
+            string: "2 people ",
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 14, weight: .bold),
+                .foregroundColor: UIColor.darkText
+            ]
+        )
+        
+        attributedText.append(NSAttributedString(
+            string: "typing…",
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 14, weight: .medium),
+                .foregroundColor: UIColor.darkText
+            ]
+        ))
+        
         typingLabel = UILabel()
         addSubview(typingLabel)
         bringSubviewToFront(typingLabel)
-        
     }
     
     /// Lays out the `typingLabel` if required.
@@ -105,22 +113,25 @@ open class MSGCollectionView: UICollectionView {
         let bottom = contentOffset.y + bounds.size.height
         
         // Check the content size is greater than the bounds or use the bounds as the position for the y
-        let y = contentSize.height > bounds.height ? contentSize.height + 16 : bottom - (16 + typingLabel.bounds.height)
-        typingLabel.frame = CGRect(x: 20, y: y, width: contentSize.width - 40, height: typingLabel.bounds.height)
+        let y = contentSize.height > bounds.height ? contentSize.height + 16 : bottom - (
+            16 + typingLabel.bounds.height
+        )
+        typingLabel.frame = CGRect(x: 20,
+                                   y: y,
+                                   width: contentSize.width - 40,
+                                   height: typingLabel.bounds.height)
         
         let newOffset: CGFloat = typingLabel.bounds.height > 0 ? 55 : 16
         UIView.animate(withDuration: 0.3) {
-            self.contentInset =  UIEdgeInsets(top: self.contentInset.top, left: 0, bottom: newOffset, right: 0)
+            self.contentInset =  UIEdgeInsets(top: self.contentInset.top,
+                                              left: 0,
+                                              bottom: newOffset,
+                                              right: 0)
         }
         
         // Only scroll the view if the user is already at the bottom
         if bottom >= contentSize.height && contentSize.height > bounds.height {
             scrollToBottom(animated: true)
         }
-        
     }
-    
 }
-
-
-

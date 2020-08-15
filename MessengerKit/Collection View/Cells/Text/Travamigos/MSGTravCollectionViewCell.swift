@@ -10,9 +10,9 @@ import UIKit
 
 open class MSGTravCollectionViewCell: MSGMessageCell {
     
-    @IBOutlet weak var bubbleWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var bubbleWidthConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var bubble: MSGTravOutgoingBubble!
+    @IBOutlet var bubble: MSGTravOutgoingBubble!
     
     override open var message: MSGMessage? {
         didSet {
@@ -25,7 +25,8 @@ open class MSGTravCollectionViewCell: MSGMessageCell {
     
     override open var style: MSGMessengerStyle? {
         didSet {
-            guard let message = message, let style = style as? MSGTravamigosStyle else { return }
+            guard let message = message,
+                let style = style as? MSGTravamigosStyle else { return }
             bubble.linkTextAttributes = [
                 NSAttributedString.Key.underlineColor: message.user.isSender ? style.outgoingLinkColor : style.incomingLinkColor,
                 NSAttributedString.Key.foregroundColor: message.user.isSender ? style.outgoingLinkColor : style.incomingLinkColor,
@@ -48,16 +49,17 @@ open class MSGTravCollectionViewCell: MSGMessageCell {
         
         bubble.delegate = self
     }
-    
 }
 
 extension MSGTravCollectionViewCell: UITextViewDelegate {
     
-    public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+    public func textView(_ textView: UITextView,
+                         shouldInteractWith URL: URL,
+                         in characterRange: NSRange,
+                         interaction: UITextItemInteraction) -> Bool {
         
         delegate?.cellLinkTapped(url: URL)
         
         return false
     }
-    
 }

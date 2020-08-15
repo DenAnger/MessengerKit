@@ -56,9 +56,10 @@ class CustomBubble: UITextView {
                                           right: 20)
         textContainer.lineFragmentPadding = 0
         
-        linkTextAttributes = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single]
+        linkTextAttributes = [
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single
+        ]
     }
-    
     
     func calculatedSize(in size: CGSize) -> CGSize {
         return sizeThatFits(CGSize(width: size.width - 40, height: .infinity))
@@ -67,14 +68,16 @@ class CustomBubble: UITextView {
     // Disables text selection
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         
-        guard let pos = closestPosition(to: point) else {
+        guard let position = closestPosition(to: point) else {
             return false
         }
         
         guard let range = tokenizer.rangeEnclosingPosition(
-            pos,
+            position,
             with: .character,
-            inDirection: UITextDirection(rawValue: UITextLayoutDirection.left.rawValue)
+            inDirection: UITextDirection(
+                rawValue: UITextLayoutDirection.left.rawValue
+            )
             ) else {
                 return false
         }

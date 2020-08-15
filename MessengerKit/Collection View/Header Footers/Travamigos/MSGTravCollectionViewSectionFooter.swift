@@ -10,15 +10,13 @@ import UIKit
 
 class MSGTravCollectionViewSectionFooter: MSGSectionReusableView {
     
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet var avatarImageView: UIImageView!
     
     var avatarTapGestureRecogniser: UITapGestureRecognizer!
     
     override var message: MSGMessage? {
         didSet {
-            
             avatarImageView.image = message?.user.avatar
-            
         }
     }
     
@@ -28,10 +26,16 @@ class MSGTravCollectionViewSectionFooter: MSGSectionReusableView {
         
         avatarImageView.layer.masksToBounds = true
         avatarImageView.layer.borderWidth = 2
-        avatarImageView.layer.borderColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00).cgColor
+        avatarImageView.layer.borderColor = UIColor(red:0.97,
+                                                    green:0.97,
+                                                    blue:0.97,
+                                                    alpha:1.00).cgColor
         
         avatarImageView.isUserInteractionEnabled = true
-        avatarTapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(avatarTapped(_:)))
+        avatarTapGestureRecogniser = UITapGestureRecognizer(
+            target: self,
+            action: #selector(avatarTapped(_:))
+        )
         avatarImageView.addGestureRecognizer(avatarTapGestureRecogniser)
     }
     
@@ -44,12 +48,10 @@ class MSGTravCollectionViewSectionFooter: MSGSectionReusableView {
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         avatarImageView.layer.mask = mask
-        
     }
     
     @objc func avatarTapped(_ sender: UITapGestureRecognizer) {
         guard let user = message?.user else { return }
         delegate?.reusableViewAvatarTapped(for: user)
     }
-    
 }

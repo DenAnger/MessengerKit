@@ -45,5 +45,4 @@ public protocol MSGDataSource: NSObjectProtocol {
     /// - Parameter section: The index of the section the header is being rendered for.
     /// - Returns: The title that should be displayed.
     func headerTitle(for section: Int) -> String?
-    
 }

@@ -108,7 +108,8 @@ open class MSGPlaceholderTextView: UIView {
         addSubview(label)
         
         label.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        label.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                       constant: 16).isActive = true
         label.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
@@ -140,7 +141,6 @@ open class MSGPlaceholderTextView: UIView {
     open override func becomeFirstResponder() -> Bool {
         return textView.becomeFirstResponder()
     }
-    
 }
 
 extension MSGPlaceholderTextView: UITextViewDelegate {
@@ -149,11 +149,9 @@ extension MSGPlaceholderTextView: UITextViewDelegate {
         delegate?.textViewDidChange(textView)
         label.isHidden = textView.text != ""
     }
-    
 }
 
 public protocol MSGPlaceholderTextViewDelegate: NSObjectProtocol {
     
     func textViewDidChange(_ textView: UITextView)
-    
 }

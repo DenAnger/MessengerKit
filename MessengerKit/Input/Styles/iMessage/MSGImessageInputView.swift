@@ -30,7 +30,9 @@ open class MSGImessageInputView: MSGInputView {
         textView.layer.borderWidth = 0.5
         textView.layer.cornerRadius = (sendButton.bounds.height / 2) + 2
         
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 40)
+        textView.textContainerInset = UIEdgeInsets(top: 10,
+                                                   left: 10,
+                                                   bottom: 10,
+                                                   right: 40)
     }
-    
 }

@@ -11,7 +11,10 @@ import UIKit
 
 open class MSGTravInputView: MSGInputView {
 
-    var lineColor: UIColor = UIColor(hue:0.67, saturation:0.02, brightness:0.92, alpha:1.00)
+    var lineColor: UIColor = UIColor(hue:0.67,
+                                     saturation:0.02,
+                                     brightness:0.92,
+                                     alpha:1.00)
     
     /// The stack view used to old all subviews
     private let stackView = UIStackView()
@@ -38,17 +41,24 @@ open class MSGTravInputView: MSGInputView {
     override open func layoutSubviews() {
         super.layoutSubviews()
         
-        topBorder.frame = CGRect(x: 0, y: 0, width: layer.bounds.width, height: 1)
+        topBorder.frame = CGRect(x: 0,
+                                 y: 0,
+                                 width: layer.bounds.width,
+                                 height: 1)
     }
     
     override open func setup() {
-        
         textView = MSGPlaceholderTextView()
         sendButton = UIButton(type: .system)
         
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 12, bottom: 10, right: 12)
-        textView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
-        
+        textView.textContainerInset = UIEdgeInsets(top: 10,
+                                                   left: 12,
+                                                   bottom: 10,
+                                                   right: 12)
+        textView.contentInset = UIEdgeInsets(top: 6,
+                                             left: 0,
+                                             bottom: 6,
+                                             right: 0)
         addStackView()
         addSubviews()
         addTopBorder()
@@ -96,7 +106,9 @@ open class MSGTravInputView: MSGInputView {
     
     func setupSendButton() {
         sendButton.isEnabled = false
-        sendButton.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
+        sendButton.addTarget(self,
+                             action: #selector(sendButtonTapped(_:)),
+                             for: .touchUpInside)
         sendButton.widthAnchor.constraint(equalToConstant: 90).isActive = true
         
         styleSendButton()
@@ -105,21 +117,35 @@ open class MSGTravInputView: MSGInputView {
     func styleSendButton() {
         let title = (style as? MSGTravamigosStyle)?.inputButtonText ?? "Send"
         
-        sendButton.setAttributedTitle(NSAttributedString(string: title, attributes: [
-            .foregroundColor: tintColor!,
-            .font: UIFont.systemFont(ofSize: 14, weight: .bold)
-            ]), for: .normal)
+        sendButton.setAttributedTitle(
+            NSAttributedString(string: title,
+                               attributes: [
+                                .foregroundColor: tintColor!,
+                                .font: UIFont.systemFont(ofSize: 14,
+                                                         weight: .bold)
+            ]),
+            for: .normal
+        )
         
-        sendButton.setAttributedTitle(NSAttributedString(string: title, attributes: [
-            .foregroundColor: UIColor(red:0.90, green:0.90, blue:0.91, alpha:1.00),
-            .font: UIFont.systemFont(ofSize: 14, weight: .bold)
-        ]), for: .disabled)
+        sendButton.setAttributedTitle(
+            NSAttributedString(string: title,
+                               attributes: [
+                                .foregroundColor: UIColor(red:0.90,
+                                                          green:0.90,
+                                                          blue:0.91,
+                                                          alpha:1.00),
+                                .font: UIFont.systemFont(ofSize: 14,
+                                                         weight: .bold)
+            ]),
+            for: .disabled)
     }
     
     func addTopBorder() {
         topBorder.backgroundColor = lineColor.cgColor
-        topBorder.frame = CGRect(x: 0, y: 0, width: layer.bounds.width, height: 1)
+        topBorder.frame = CGRect(x: 0,
+                                 y: 0,
+                                 width: layer.bounds.width,
+                                 height: 1)
         layer.addSublayer(topBorder)
     }
-
 }

@@ -12,45 +12,42 @@ import UIKit
 public class MSGTailOutgoingBubble: UITextView {
     
     lazy var tailImage: UIImage = {
-    
-        let image = UIImage(
-            named: "Outgoing Tail Bubble",
-            in: MessengerKit.bundle,
-            compatibleWith: nil
-        )
+        
+        let image = UIImage(named: "Outgoing Tail Bubble",
+                            in: MessengerKit.bundle,
+                            compatibleWith: nil)
         
         let resizableImage = image?.resizableImage(
-            withCapInsets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 20),
+            withCapInsets: UIEdgeInsets(top: 10,
+                                        left: 10,
+                                        bottom: 10,
+                                        right: 20),
             resizingMode: .stretch
         )
         
         return resizableImage!
-        
     }()
     
     lazy var standardImage: UIImage = {
-       
-        let image = UIImage(
-            named: "Outgoing Bubble",
-            in: MessengerKit.bundle,
-            compatibleWith: nil
-        )
+        
+        let image = UIImage(named: "Outgoing Bubble",
+                            in: MessengerKit.bundle,
+                            compatibleWith: nil)
         
         let resizableImage = image?.resizableImage(
-            withCapInsets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 20),
+            withCapInsets: UIEdgeInsets(top: 10,
+                                        left: 10,
+                                        bottom: 10,
+                                        right: 20),
             resizingMode: .stretch
         )
         
         return resizableImage!
-        
     }()
     
     lazy var backgroundImageView: UIImageView = {
         
-        return UIImageView(
-            image: tailImage
-        )
-        
+        return UIImageView(image: tailImage)
     }()
     
     var shouldShowTail: Bool = true {
@@ -85,24 +82,32 @@ public class MSGTailOutgoingBubble: UITextView {
     }
     
     open func setupView() {
-        
         isEditable = false
         isSelectable = true // TODO: Check that links are tappable
-        dataDetectorTypes = [.flightNumber, .calendarEvent, .address, .phoneNumber, .link, .lookupSuggestion]
+        dataDetectorTypes = [.flightNumber,
+                             .calendarEvent,
+                             .address,
+                             .phoneNumber,
+                             .link,
+                             .lookupSuggestion]
         isUserInteractionEnabled = true
         delaysContentTouches = true
         font = UIFont.preferredFont(forTextStyle: .body)
         translatesAutoresizingMaskIntoConstraints = false
-        textContainerInset = UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 15)
+        textContainerInset = UIEdgeInsets(top: 8,
+                                          left: 10,
+                                          bottom: 8,
+                                          right: 15)
         textContainer.lineFragmentPadding = 0
         
         backgroundColor = .clear
         textColor = .white
         
-        linkTextAttributes = [NSAttributedString.Key.underlineColor: NSUnderlineStyle.single.rawValue]
+        linkTextAttributes = [
+            NSAttributedString.Key.underlineColor: NSUnderlineStyle.single.rawValue
+        ]
         
         addBackground()
-        
     }
     
     func addBackground() {
@@ -116,20 +121,25 @@ public class MSGTailOutgoingBubble: UITextView {
     }
     
     // Disables text selection
-    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    override public func point(inside point: CGPoint,
+                               with event: UIEvent?) -> Bool {
         
-        guard let pos = closestPosition(to: point) else {
+        guard let position = closestPosition(to: point) else {
             return false
         }
         
-        guard let range = tokenizer.rangeEnclosingPosition(pos, with: .character,
-                                                           inDirection: UITextDirection(rawValue: UITextLayoutDirection.left.rawValue)) else {
-                                                            return false
+        guard let range = tokenizer.rangeEnclosingPosition(
+            position,
+            with: .character,
+            inDirection: UITextDirection(rawValue: UITextLayoutDirection.left.rawValue)
+            ) else {
+                return false
         }
         
         let startIndex = offset(from: beginningOfDocument, to: range.start)
         
-        return attributedText.attribute(.link, at: startIndex, effectiveRange: nil) != nil
+        return attributedText.attribute(.link,
+                                        at: startIndex,
+                                        effectiveRange: nil) != nil
     }
-    
 }

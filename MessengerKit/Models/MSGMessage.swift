@@ -30,5 +30,4 @@ public class MSGMessage: NSObject{
         self.user = user
         self.sentAt = sentAt
     }
-    
 }

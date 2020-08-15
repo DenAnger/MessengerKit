@@ -12,11 +12,9 @@ import UIKit
 /// This view simply contains two containers and is loaded from the `MSGMessengerView` nib.
 class MSGMessengerView: UIView {
     
-    @IBOutlet weak var backgroundView: UIView!
-    
-    @IBOutlet weak var collectionViewContainer: UIView!
-    
-    @IBOutlet weak var inputViewContainer: UIView!
+    @IBOutlet var backgroundView: UIView!
+    @IBOutlet var collectionViewContainer: UIView!
+    @IBOutlet var inputViewContainer: UIView!
 
     func add(_ collectionView: MSGCollectionView) {
         
@@ -28,7 +26,6 @@ class MSGMessengerView: UIView {
         collectionView.leadingAnchor.constraint(equalTo: collectionViewContainer.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: collectionViewContainer.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: collectionViewContainer.bottomAnchor).isActive = true
-        
     }
     
     func add(_ inputView: MSGInputView) {
@@ -41,7 +38,5 @@ class MSGMessengerView: UIView {
         inputView.leadingAnchor.constraint(equalTo: inputViewContainer.leadingAnchor).isActive = true
         inputView.trailingAnchor.constraint(equalTo: inputViewContainer.trailingAnchor).isActive = true
         inputView.bottomAnchor.constraint(equalTo: inputViewContainer.bottomAnchor).isActive = true
-        
     }
-    
 }

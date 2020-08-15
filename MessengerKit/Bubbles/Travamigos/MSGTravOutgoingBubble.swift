@@ -55,23 +55,31 @@ class MSGTravOutgoingBubble: UITextView {
         CATransaction.commit()
     }
     
-    
     fileprivate func setupView() {
-        
         layer.cornerRadius = 18
         layer.masksToBounds = true
         
         isEditable = false
         isSelectable = true // TODO: Check that links are tappable
-        dataDetectorTypes = [.flightNumber, .calendarEvent, .address, .phoneNumber, .link, .lookupSuggestion]
+        dataDetectorTypes = [.flightNumber,
+                             .calendarEvent,
+                             .address,
+                             .phoneNumber,
+                             .link,
+                             .lookupSuggestion]
         isUserInteractionEnabled = true
         delaysContentTouches = true
         font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         translatesAutoresizingMaskIntoConstraints = false
-        textContainerInset = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
+        textContainerInset = UIEdgeInsets(top: 15,
+                                          left: 20,
+                                          bottom: 15,
+                                          right: 20)
         textContainer.lineFragmentPadding = 0
         
-        linkTextAttributes = [NSAttributedString.Key.underlineColor: NSUnderlineStyle.single.rawValue]
+        linkTextAttributes = [
+            NSAttributedString.Key.underlineColor: NSUnderlineStyle.single.rawValue
+        ]
         
         addGradientLayer()
     }
@@ -93,18 +101,22 @@ class MSGTravOutgoingBubble: UITextView {
     // Disables text selection
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         
-        guard let pos = closestPosition(to: point) else {
+        guard let position = closestPosition(to: point) else {
             return false
         }
         
-        guard let range = tokenizer.rangeEnclosingPosition(pos, with: .character,
-                                                           inDirection: UITextDirection(rawValue: UITextLayoutDirection.left.rawValue)) else {
-                                                            return false
+        guard let range = tokenizer.rangeEnclosingPosition(
+            position,
+            with: .character,
+            inDirection: UITextDirection(rawValue: UITextLayoutDirection.left.rawValue)
+            ) else {
+                return false
         }
         
         let startIndex = offset(from: beginningOfDocument, to: range.start)
         
-        return attributedText.attribute(.link, at: startIndex, effectiveRange: nil) != nil
+        return attributedText.attribute(.link,
+                                        at: startIndex,
+                                        effectiveRange: nil) != nil
     }
-    
 }

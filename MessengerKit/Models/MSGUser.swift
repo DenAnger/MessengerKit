@@ -21,5 +21,4 @@ public protocol MSGUser {
     /// Whether this user is the one sending messages.
     /// This is used to determine which bubble is rendered.
     var isSender: Bool { get }
-    
 }

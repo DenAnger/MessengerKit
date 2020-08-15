@@ -13,7 +13,7 @@ import UIKit
 ///
 /// If you wish to use your own `MSGCollectionView` or  `MSGInputView` subclass please use the appropriate initializer or subclass.
 open class MSGMessengerViewController: UIViewController {
-
+    
     // MARK: - Subviews
     
     /// The input view that's used within the messenger
@@ -22,7 +22,8 @@ open class MSGMessengerViewController: UIViewController {
         var inputView: MSGInputView!
         
         if let nib = style.inputView.nib,
-        let view = nib.instantiate(withOwner: self, options: nil).first as? MSGInputView {
+            let view = nib.instantiate(withOwner: self,
+                                       options: nil).first as? MSGInputView {
             inputView = view
         } else {
             inputView = style.inputView.init()
@@ -57,7 +58,6 @@ open class MSGMessengerViewController: UIViewController {
             }
         }
     }
-    
     
     // MARK: - Public Properties
     
@@ -110,7 +110,12 @@ open class MSGMessengerViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // Setup an observer so we can detect the keyboard appearing and keep the collectionview at the bottom
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
         
         if shouldScrollToBottom {
             collectionView.scrollToBottom(animated: true)
@@ -120,7 +125,11 @@ open class MSGMessengerViewController: UIViewController {
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
     }
     
     open override func loadView() {
@@ -135,8 +144,10 @@ open class MSGMessengerViewController: UIViewController {
     }
     
     private func loadFromDefaultNib() {
-        let view = UINib(nibName: "MSGMessengerView", bundle: MessengerKit.bundle)
-            .instantiate(withOwner: self, options: nil).first as? MSGMessengerView
+        let view = UINib(nibName: "MSGMessengerView",
+                         bundle: MessengerKit.bundle)
+            .instantiate(withOwner: self,
+                         options: nil).first as? MSGMessengerView
         
         view?.frame = CGRect.zero
         view?.backgroundView.backgroundColor = style.inputViewBackgroundColor
@@ -145,7 +156,6 @@ open class MSGMessengerViewController: UIViewController {
         
         self.view = view
     }
-    
     
     // MARK: - Setup
     
@@ -157,9 +167,17 @@ open class MSGMessengerViewController: UIViewController {
         
         view.addLayoutGuide(keyboardLayoutGuide)
         view.inputViewContainer.bottomAnchor.constraint(equalTo: keyboardLayoutGuide.topAnchor).isActive = true
-    
-        messageInputView.addTarget(self, action: #selector(inputViewDidChange(inputView:)), for: .valueChanged)
-        messageInputView.addTarget(self, action: #selector(inputViewPrimaryActionTriggered(inputView:)), for: .primaryActionTriggered)
+        
+        messageInputView.addTarget(
+            self,
+            action: #selector(inputViewDidChange(inputView:)),
+            for: .valueChanged
+        )
+        messageInputView.addTarget(
+            self,
+            action: #selector(inputViewPrimaryActionTriggered(inputView:)),
+            for: .primaryActionTriggered
+        )
     }
     
     open func setupCollectionView() {
@@ -170,27 +188,34 @@ open class MSGMessengerViewController: UIViewController {
         collectionView.prefetchDataSource = self
         collectionView.isPrefetchingEnabled = true
         
-        collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 16,
+                                                   left: 0,
+                                                   bottom: 16,
+                                                   right: 0)
         
-        collectionView.addObserver(self, forKeyPath: "contentSize", options: .old, context: nil)
+        collectionView.addObserver(self,
+                                   forKeyPath: "contentSize",
+                                   options: .old,
+                                   context: nil)
     }
     
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override open func observeValue(forKeyPath keyPath: String?,
+                                    of object: Any?,
+                                    change: [NSKeyValueChangeKey : Any]?,
+                                    context: UnsafeMutableRawPointer?) {
         
-        if let observedObject = object as? MSGCollectionView, observedObject == collectionView {
+        if let observedObject = object as? MSGCollectionView,
+            observedObject == collectionView {
             collectionViewLoaded = true
             collectionView.removeObserver(self, forKeyPath: "contentSize")
         }
-        
     }
-    
     
     // MARK: - Actions
     
     @objc open dynamic func inputViewDidChange(inputView: MSGInputView) { }
     
     @objc open dynamic func inputViewPrimaryActionTriggered(inputView: MSGInputView) { }
-    
     
     // MARK: - Keyboard
     
@@ -217,26 +242,32 @@ open class MSGMessengerViewController: UIViewController {
         var attributedText: NSMutableAttributedString!
         
         if users.count == 1 {
-            attributedText = NSMutableAttributedString(string: users[0].displayName, attributes: [
-                .font: UIFont.systemFont(ofSize: 14, weight: .bold),
-                .foregroundColor: UIColor.darkText
-            ])
+            attributedText = NSMutableAttributedString(
+                string: users[0].displayName,
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 14, weight: .bold),
+                    .foregroundColor: UIColor.darkText
+                ]
+            )
         } else {
-            attributedText = NSMutableAttributedString(string: "\(users.count) people", attributes: [
-                .font: UIFont.systemFont(ofSize: 14, weight: .bold),
-                .foregroundColor: UIColor.darkText
-            ])
+            attributedText = NSMutableAttributedString(
+                string: "\(users.count) people",
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 14, weight: .bold),
+                    .foregroundColor: UIColor.darkText
+                ]
+            )
         }
         
-        attributedText.append(NSAttributedString(string: users.count == 1 ? " is typing…" : " typing…", attributes: [
-            .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-            .foregroundColor: UIColor.black
-        ]))
-        
+        attributedText.append(NSAttributedString(
+            string: users.count == 1 ? " is typing…" : " typing…",
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 14, weight: .medium),
+                .foregroundColor: UIColor.black
+            ]
+        ))
         
         collectionView.typingLabel.attributedText = attributedText
         collectionView.layoutTypingLabelIfNeeded()
-        
     }
-    
 }

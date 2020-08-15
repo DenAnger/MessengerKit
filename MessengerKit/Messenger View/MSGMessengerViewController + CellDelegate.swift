@@ -22,8 +22,9 @@ extension MSGMessengerViewController: MSGMessageCellDelegate {
         
         guard let delegate = delegate else { return }
         
-        if let scheme = url.scheme, scheme.starts(with: "http"),
-        delegate.shouldDisplaySafari(for: url) {
+        if let scheme = url.scheme,
+            scheme.starts(with: "http"),
+            delegate.shouldDisplaySafari(for: url) {
             
             let vc = SFSafariViewController(url: url)
             vc.preferredControlTintColor = tintColor
@@ -32,15 +33,13 @@ extension MSGMessengerViewController: MSGMessageCellDelegate {
         } else if delegate.shouldOpen(url: url) {
             
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        
+            
         }
-
-        delegate.linkTapped(url: url)
         
+        delegate.linkTapped(url: url)
     }
     
     public func cellAvatarTapped(for user: MSGUser) {
         delegate?.avatarTapped(for: user)
     }
-    
 }

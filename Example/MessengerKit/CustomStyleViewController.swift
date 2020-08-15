@@ -86,33 +86,34 @@ class CustomStyleViewController: MSGMessengerViewController {
             inputView.message.containsOnlyEmoji && inputView.message.count < 5
             ) ? .emoji(inputView.message) : .text(inputView.message)
         
-        let message = MSGMessage(id: id, body: body, user: steve, sentAt: Date())
+        let message = MSGMessage(id: id,
+                                 body: body,
+                                 user: steve,
+                                 sentAt: Date())
         insert(message)
     }
     
     override func insert(_ message: MSGMessage) {
         
         collectionView.performBatchUpdates({
-            
-            if let lastSection = self.messages.last,
-                let lastMessage = lastSection.last,
-                lastMessage.user.displayName == message.user.displayName {
-                self.messages[self.messages.count - 1].append(message)
-                
-                let sectionIndex = self.messages.count - 1
-                let itemIndex = self.messages[sectionIndex].count - 1
-                self.collectionView.insertItems(
-                    at: [IndexPath(item: itemIndex, section: sectionIndex)]
-                )
-                
-            } else {
-                self.messages.append([message])
-                let sectionIndex = self.messages.count - 1
-                self.collectionView.insertSections([sectionIndex])
-            }
+                if let lastSection = self.messages.last,
+                    let lastMessage = lastSection.last,
+                    lastMessage.user.displayName == message.user.displayName {
+                    
+                    self.messages[self.messages.count - 1].append(message)
+                    let sectionIndex = self.messages.count - 1
+                    let itemIndex = self.messages[sectionIndex].count - 1
+                    self.collectionView.insertItems(
+                        at: [IndexPath(item: itemIndex, section: sectionIndex)]
+                    )
+                } else {
+                    self.messages.append([message])
+                    let sectionIndex = self.messages.count - 1
+                    self.collectionView.insertSections([sectionIndex])
+                }
         }, completion: { (_) in
-            self.collectionView.scrollToBottom(animated: true)
-            self.collectionView.layoutTypingLabelIfNeeded()
+                self.collectionView.scrollToBottom(animated: true)
+                self.collectionView.layoutTypingLabelIfNeeded()
         })
     }
     
@@ -131,7 +132,6 @@ class CustomStyleViewController: MSGMessengerViewController {
                     self.collectionView.insertItems(
                         at: [IndexPath(item: itemIndex, section: sectionIndex)]
                     )
-                    
                 } else {
                     self.messages.append([message])
                     let sectionIndex = self.messages.count - 1

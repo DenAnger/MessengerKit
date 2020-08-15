@@ -73,6 +73,6 @@ public protocol MSGMessengerStyle {
     ///
     /// - Parameter message: The message to calculate the size for
     /// - Returns: The size calculated
-    func size(for message: MSGMessage, in collectionView: UICollectionView) -> CGSize
-    
+    func size(for message: MSGMessage,
+              in collectionView: UICollectionView) -> CGSize
 }

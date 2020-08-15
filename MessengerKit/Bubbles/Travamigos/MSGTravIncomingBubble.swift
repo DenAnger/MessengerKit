@@ -11,10 +11,7 @@ import UIKit
 class MSGTravIncomingBubble: MSGTravOutgoingBubble {
     
     override var gradientColors: [CGColor] {
-        return [
-            UIColor.white.cgColor,
-            UIColor.white.cgColor
-        ]
+        return [UIColor.white.cgColor, UIColor.white.cgColor]
     }
     
     override var tintColor: UIColor! {
@@ -23,5 +20,4 @@ class MSGTravIncomingBubble: MSGTravOutgoingBubble {
         }
         set { }
     }
-    
 }

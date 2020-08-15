@@ -15,7 +15,8 @@ public class KeyboardFrameObserver : NSObject {
     
     let updateHandler: (CGRect, Bool) -> Void
     
-    public init(view: UIView, updateHandler: @escaping (_ frame: CGRect, _ animated: Bool) -> Void) {
+    public init(view: UIView,
+                updateHandler: @escaping (_ frame: CGRect, _ animated: Bool) -> Void) {
         self.view = view
         self.updateHandler = updateHandler
         super.init()
@@ -31,4 +32,3 @@ public class KeyboardFrameObserver : NSObject {
         KeyboardFrameObserversManager.shared.removeObserver(self)
     }
 }
-

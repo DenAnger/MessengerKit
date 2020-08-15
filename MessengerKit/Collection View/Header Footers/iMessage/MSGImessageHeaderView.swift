@@ -10,7 +10,7 @@ import UIKit
 
 class MSGImessageHeaderView: MSGSectionReusableView {
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet var label: UILabel!
     
     override var style: MSGMessengerStyle? {
         didSet {
@@ -26,5 +26,4 @@ class MSGImessageHeaderView: MSGSectionReusableView {
             label.text = title
         }
     }
-    
 }

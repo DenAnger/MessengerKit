@@ -11,10 +11,7 @@ import MessengerKit
 struct User: MSGUser {
     
     var displayName: String
-    
     var avatar: UIImage?
-    
     var avatarUrl: URL?
-    
     var isSender: Bool
 }

@@ -39,51 +39,51 @@ public struct MSGTravamigosStyle: MSGMessengerStyle {
     
     public var outgoingLinkColor: UIColor = .white
     
-    public var incomingLinkColor: UIColor = UIColor(red:1.00, green:0.30, blue:0.13, alpha:1.00)
+    public var incomingLinkColor: UIColor = UIColor(red: 1.00,
+                                                    green: 0.30,
+                                                    blue: 0.13,
+                                                    alpha: 1.00)
     
     public var outgoingLinkUnderlineStyle: NSNumber = 0
 
     public var incomingLinkUnderlineStyle: NSNumber = 0
 
-    public func size(for message: MSGMessage, in collectionView: UICollectionView) -> CGSize {
+    public func size(for message: MSGMessage,
+                     in collectionView: UICollectionView) -> CGSize {
         
         var size: CGSize!
         
         switch message.body {
         case .text(let body):
-            
             let bubble = MSGTravOutgoingBubble()
             bubble.text = body
             bubble.font = font
-            let bubbleSize = bubble.calculatedSize(in: CGSize(width: collectionView.bounds.width, height: .infinity))
-            size = CGSize(width: collectionView.bounds.width, height: bubbleSize.height)
-            
+            let bubbleSize = bubble.calculatedSize(
+                in: CGSize(width: collectionView.bounds.width,
+                           height: .infinity)
+            )
+            size = CGSize(width: collectionView.bounds.width,
+                          height: bubbleSize.height)
             break
             
-            
         case .emoji:
-            
             size = CGSize(width: collectionView.bounds.width, height: 60)
-            
             break
             
         default:
-            
             size = CGSize(width: collectionView.bounds.width, height: 175)
-            
             break
         }
         
         return size
-        
     }
     
     // MARK: - Custom Properties
     
     /// Colors for the gradient on outgoing bubbles
     public var outgoingGradient: [CGColor] = [
-        UIColor(red:1.00, green:0.30, blue:0.13, alpha:1.00).cgColor,
-        UIColor(red:0.89, green:0.08, blue:0.46, alpha:1.00).cgColor
+        UIColor(red: 1.00, green: 0.30, blue: 0.13, alpha: 1.00).cgColor,
+        UIColor(red: 0.89, green: 0.08, blue: 0.46, alpha: 1.00).cgColor
     ]
     
     /// Colors for the gradient on incoming bubbles
@@ -94,5 +94,4 @@ public struct MSGTravamigosStyle: MSGMessengerStyle {
     
     /// The text for the send button
     public var inputButtonText = "Send"
-    
 }

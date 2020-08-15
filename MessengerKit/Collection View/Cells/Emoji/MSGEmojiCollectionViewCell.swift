@@ -10,7 +10,7 @@ import UIKit
 
 class MSGEmojiCollectionViewCell: MSGMessageCell {
     
-    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet var textLabel: UILabel!
     
     override var message: MSGMessage? {
         didSet {
@@ -20,5 +20,4 @@ class MSGEmojiCollectionViewCell: MSGMessageCell {
             textLabel.text = body
         }
     }
-    
 }

@@ -14,7 +14,9 @@ public final class MessengerKit {
     internal static var bundle: Bundle? {
         let sourceBundle = Bundle(for: MessengerKit.self)
         
-        if let url = sourceBundle.url(forResource: "MessengerKit", withExtension: "bundle"), let bundle = Bundle(url: url) {
+        if let url = sourceBundle.url(forResource: "MessengerKit",
+                                      withExtension: "bundle"),
+            let bundle = Bundle(url: url) {
             return bundle
         }
         
@@ -31,7 +33,5 @@ public final class MessengerKit {
         public static let iMessage = MSGIMessageStyle()
         
         private init() { }
-        
     }
-    
 }

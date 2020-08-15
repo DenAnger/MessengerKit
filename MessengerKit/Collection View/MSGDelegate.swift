@@ -46,7 +46,6 @@ public protocol MSGDelegate: NSObjectProtocol {
     /// - Parameter url: The URL that was tapped
     /// - Returns: Whether the URL should be opened or not
     func shouldOpen(url: URL) -> Bool
-    
 }
 
 extension MSGDelegate {
@@ -62,5 +61,4 @@ extension MSGDelegate {
     public func shouldDisplaySafari(for url: URL) -> Bool { return true }
     
     public func shouldOpen(url: URL) -> Bool { return true }
-    
 }
